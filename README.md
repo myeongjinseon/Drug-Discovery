@@ -1,33 +1,33 @@
 # Drug Discovery Camp
 
-2일 동안 진행한 구조 기반 신약 개발(Structure-Based Drug Discovery, SBDD) 실습 자료입니다. 단백질과 리간드의 3차원 구조를 준비하고, 결합 부위를 예측한 뒤 AutoDock Vina로 도킹 및 교차 도킹을 수행합니다.
+Hands-on materials for a two-day introduction to Structure-Based Drug Discovery (SBDD). The notebooks cover preparation of 3D protein and ligand structures, binding-site prediction, molecular docking with AutoDock Vina, and cross-docking analysis.
 
-## 실습 목표
+## Learning objectives
 
-- SMILES로부터 도킹 가능한 3D 리간드 구조 만들기
-- PDB 구조를 내려받아 수용체를 정리하고 PDBQT로 변환하기
-- 단백질의 형태만 사용해 결합 부위(binding site) 예측하기
-- 공결정 구조를 템플릿으로 선택하고 도킹 결과 비교하기
-- 교차 도킹으로 결합 점수, 포켓 중심 거리, self-docking RMSD 해석하기
+- Generate docking-ready 3D ligand structures from SMILES strings.
+- Download and prepare PDB structures, then convert receptors to PDBQT format.
+- Predict binding sites using protein structure alone.
+- Select co-crystal structures as templates and compare docking outcomes.
+- Interpret cross-docking results using binding scores, pocket-center distances, and self-docking RMSD.
 
-## 구성
+## Contents
 
-| 일차 | 노트북 | 내용 |
+| Day | Notebook | Topic |
 | --- | --- | --- |
-| Day 1 | `Day_1_Session_2.ipynb` | 리간드 준비, 단백질 준비, 기본 분자 도킹 |
-| Day 2-1 | `Day_2_Session_1_1_Binding_Site_Prediction.ipynb` | LIGSITE 방식의 결합 부위 예측 및 공결정 리간드와 비교 |
-| Day 2-2 | `Day_2_Session_1_2_Template_Selection.ipynb` | Abl kinase 템플릿(1IEP/2GQG) 선택, Imatinib·Dasatinib 도킹, decoy 평가, AlphaFold 비교 |
-| Day 2-3 | `Day_2_Session_2_2_Corss_Dock.ipynb` | 팀 템플릿을 이용한 교차 도킹 및 결과 지표 계산 |
+| Day 1 | `Day_1_Session_2.ipynb` | Ligand preparation, protein preparation, and introductory molecular docking |
+| Day 2-1 | `Day_2_Session_1_1_Binding_Site_Prediction.ipynb` | LIGSITE-style binding-site prediction and comparison with co-crystal ligands |
+| Day 2-2 | `Day_2_Session_1_2_Template_Selection.ipynb` | Abl kinase template selection (1IEP/2GQG), Imatinib and Dasatinib docking, decoy evaluation, and AlphaFold comparison |
+| Day 2-3 | `Day_2_Session_2_2_Corss_Dock.ipynb` | Cross-docking with a team-selected template and calculation of evaluation metrics |
 
-강의 자료 PDF도 함께 포함되어 있습니다.
+The repository also includes the accompanying lecture slides:
 
 - `day1-session1.pdf`
 - `day1-session2.pdf`
 - `day2-session1.pdf`
 
-## 빠른 시작
+## Quick start
 
-Python 3.10 이상과 Jupyter Notebook 또는 Google Colab 환경을 권장합니다. 각 노트북의 첫 번째 설치 셀을 실행한 후 위에서 아래 순서로 실행하세요. PDB 구조와 AlphaFold 모델을 내려받으므로 인터넷 연결이 필요합니다.
+Python 3.10+ and Jupyter Notebook or Google Colab are recommended. Run the first installation cell in each notebook, then execute its cells from top to bottom. An internet connection is required to download PDB structures and AlphaFold models.
 
 ```bash
 git clone <repository-url>
@@ -36,43 +36,43 @@ python -m pip install jupyter
 jupyter notebook
 ```
 
-로컬 환경에서 주요 라이브러리를 미리 설치하려면 다음을 사용할 수 있습니다.
+To install the main libraries in advance in a local environment, run:
 
 ```bash
 python -m pip install rdkit "meeko==0.7.1" vina gemmi py3Dmol numpy scipy
 ```
 
-`Day_2_Session_2_2_Corss_Dock.ipynb`는 Linux용 AutoDock Vina 1.2.5 실행 파일을 자동으로 내려받습니다. macOS 또는 Windows에서 로컬 실행 시에는 해당 셀을 운영체제에 맞는 Vina 설치 경로로 바꾸거나 Google Colab에서 실행하세요.
+`Day_2_Session_2_2_Corss_Dock.ipynb` automatically downloads an AutoDock Vina 1.2.5 executable for Linux. When running locally on macOS or Windows, update that cell with an operating-system-appropriate Vina installation path, or use Google Colab instead.
 
-## 권장 실행 순서
+## Recommended workflow
 
-1. `Day_1_Session_2.ipynb`에서 SMILES → 3D conformer → PDBQT 변환 과정을 익힙니다.
-2. `Day_2_Session_1_1_Binding_Site_Prediction.ipynb`에서 1IEP와 1ERE의 결합 포켓을 예측하고 실제 공결정 리간드 중심과 비교합니다.
-3. `Day_2_Session_1_2_Template_Selection.ipynb`에서 1IEP(DFG-out)와 2GQG(DFG-in)를 비교해 목적 리간드에 적합한 템플릿을 선택합니다.
-4. `Day_2_Session_2_2_Corss_Dock.ipynb`의 설정 셀에서 `TEAM_TEMPLATE`, `LIGAND_NAME`, `LIGAND_SMILES`를 팀 과제 값으로 바꾼 뒤 실행합니다.
+1. Start with `Day_1_Session_2.ipynb` to learn the SMILES → 3D conformer → PDBQT workflow.
+2. In `Day_2_Session_1_1_Binding_Site_Prediction.ipynb`, predict binding pockets for 1IEP and 1ERE, then compare them with the centers of their co-crystal ligands.
+3. In `Day_2_Session_1_2_Template_Selection.ipynb`, compare 1IEP (DFG-out) and 2GQG (DFG-in) to select a template appropriate for the ligand of interest.
+4. In the configuration cell of `Day_2_Session_2_2_Corss_Dock.ipynb`, replace `TEAM_TEMPLATE`, `LIGAND_NAME`, and `LIGAND_SMILES` with your team's assignment values, then run the notebook.
 
-## 교차 도킹 결과 읽기
+## Interpreting cross-docking results
 
-| 지표 | 의미 | 해석 |
+| Metric | Meaning | Interpretation |
 | --- | --- | --- |
-| Vina score (kcal/mol) | 예측 결합 친화도 | 더 낮은(더 음수) 값일수록 유리한 예측 |
-| Pocket distance (Å) | 도킹 pose와 공결정 리간드 중심의 거리 | 작을수록 동일 포켓 중심에 가까움 |
-| RMSD (Å) | self-docking일 때 공결정 pose와의 차이 | 작을수록 공결정 pose 재현성이 높음 |
-| ROC-AUC / Top-3 | active와 decoy를 구분하는 템플릿 성능 | 높을수록 virtual screening 템플릿으로 유리 |
+| Vina score (kcal/mol) | Predicted binding affinity | A lower (more negative) score is generally a more favorable prediction. |
+| Pocket distance (Å) | Distance between the docked pose and co-crystal ligand centers | A smaller value indicates closer agreement on the pocket center. |
+| RMSD (Å) | Difference from the co-crystal pose in self-docking | A smaller value indicates better reproduction of the co-crystal pose. |
+| ROC-AUC / Top-3 | Template performance for separating actives and decoys | A higher value suggests a more useful template for virtual screening. |
 
-도킹 점수는 실험적 결합 친화도 그 자체가 아니라 모델 기반 예측값입니다. 단백질 구조 상태, protonation, 탐색 박스, 리간드 conformer 등의 조건과 함께 해석해야 합니다.
+Docking scores are model-based predictions, not experimental binding affinities. Interpret them alongside the protein conformational state, protonation, search-box settings, and ligand conformers.
 
-## 주요 도구
+## Main tools and data sources
 
-- [RDKit](https://www.rdkit.org/): 분자 파싱, 3D conformer 생성, 구조 처리
-- [Meeko](https://forli-lab.github.io/Meeko/): 리간드/수용체 PDBQT 준비
-- [AutoDock Vina](https://autodock-vina.readthedocs.io/): 분자 도킹 및 점수 계산
-- [Gemmi](https://gemmi.readthedocs.io/): PDB 구조 정리
-- [py3Dmol](https://3dmol.csb.pitt.edu/): 노트북 내 3D 구조 시각화
-- [RCSB PDB](https://www.rcsb.org/), [AlphaFold DB](https://alphafold.ebi.ac.uk/): 구조 데이터 소스
+- [RDKit](https://www.rdkit.org/): molecular parsing, 3D conformer generation, and structure processing
+- [Meeko](https://forli-lab.github.io/Meeko/): ligand and receptor PDBQT preparation
+- [AutoDock Vina](https://autodock-vina.readthedocs.io/): molecular docking and scoring
+- [Gemmi](https://gemmi.readthedocs.io/): PDB structure processing
+- [py3Dmol](https://3dmol.csb.pitt.edu/): in-notebook 3D molecular visualization
+- [RCSB PDB](https://www.rcsb.org/) and [AlphaFold DB](https://alphafold.ebi.ac.uk/): structural data sources
 
-## 생성 파일 및 주의사항
+## Generated files and notes
 
-실행 중 `.pdb`, `.pdbqt`, `.sdf`, `docked.*`, `*_clean.pdb`, `*_receptor.pdbqt` 등 중간 산출물이 현재 폴더에 생성됩니다. 재현 가능한 비교를 위해 노트북에서 사용한 random seed와 탐색 박스 설정을 유지하세요.
+Running the notebooks creates intermediate files in the current directory, including `.pdb`, `.pdbqt`, `.sdf`, `docked.*`, `*_clean.pdb`, and `*_receptor.pdbqt`. For reproducible comparisons, retain the random seeds and search-box settings used in the notebooks.
 
-이 자료는 교육용 실습입니다. 후보물질의 실제 활성·안전성·개발 가능성을 판단하려면 실험 검증과 추가 계산이 필요합니다.
+These materials are intended for education. Assessing a candidate compound's real-world activity, safety, or developability requires experimental validation and additional computational studies.
